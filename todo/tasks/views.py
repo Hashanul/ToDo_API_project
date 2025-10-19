@@ -11,7 +11,7 @@ from .permissions import user_permission
 # 1. List of all Task, Create a new Task
 class TaskCreateView(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticated, user_permission]
+    # permission_classes = [permissions.IsAuthenticated, user_permission]
 
     def get_queryset(self):
         status = self.request.query_params.get('status')
@@ -25,11 +25,8 @@ class TaskCreateView(generics.ListCreateAPIView):
 # 2. single task / update / delete
 class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)
 
-
-
-# jwt & Djoser authentication.
